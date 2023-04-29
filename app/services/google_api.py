@@ -61,9 +61,9 @@ async def set_user_permissions(
 
 
 async def spreadsheets_update_value(
-    spreadsheet_id: str,
-    projects: List,
-    wrapper_service: Aiogoogle
+        spreadsheet_id: str,
+        projects: List,
+        wrapper_service: Aiogoogle
 ) -> None:
     """
     Обновление значения ячеек Google Spreadsheet.
@@ -77,7 +77,11 @@ async def spreadsheets_update_value(
         'Время сбора',
         'Описание'
     ],
-        *[list(map(str, [project['name'], project['interval'], project['description']])) for project in projects]
+        *[list(map(
+            str,
+            [project['name'],
+             project['interval'],
+             project['description']])) for project in projects]
     ]
     update_body = {
         'majorDimension': 'ROWS',
@@ -91,4 +95,3 @@ async def spreadsheets_update_value(
             json=update_body
         )
     )
-
