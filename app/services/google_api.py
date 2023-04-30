@@ -9,7 +9,7 @@ FORMAT = "%Y/%m/%d %H:%M:%S"
 
 SPREADSHEET_BODY = {
     'properties': {
-        'title': f'Отчет от ',
+        'title': 'Отчет от ',
         'locale': 'ru_RU'
     },
     'sheets': [
