@@ -8,22 +8,22 @@ from app.core.config import settings
 FORMAT = "%Y/%m/%d %H:%M:%S"
 
 SPREADSHEET_BODY = {
-        'properties': {
-            'title': f'Отчет от ',
-            'locale': 'ru_RU'
-        },
-        'sheets': [
-            {'properties': {
-                'sheetType': 'GRID',
-                'sheetId': 0,
-                'title': 'Топ проектов по скорости закрытия',
-                'gridProperties': {
-                    'rowCount': 100,
-                    'columnCount': 11
-                }
-            }}
-        ]
-    }
+    'properties': {
+        'title': f'Отчет от ',
+        'locale': 'ru_RU'
+    },
+    'sheets': [
+        {'properties': {
+            'sheetType': 'GRID',
+            'sheetId': 0,
+            'title': 'Топ проектов по скорости закрытия',
+            'gridProperties': {
+                'rowCount': 100,
+                'columnCount': 11
+            }
+        }}
+    ]
+}
 
 
 async def spreadsheets_create(wrapper_service: Aiogoogle) -> str:
