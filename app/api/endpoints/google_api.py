@@ -14,7 +14,7 @@ router = APIRouter()
 
 @router.get(
     '/',
-    #dependencies=[Depends(current_superuser)],
+    dependencies=[Depends(current_superuser)],
 )
 async def get_report(
         session: AsyncSession = Depends(get_async_session),
