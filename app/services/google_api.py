@@ -7,19 +7,9 @@ from app.core.config import settings
 
 FORMAT = "%Y/%m/%d %H:%M:%S"
 
-
-async def spreadsheets_create(wrapper_service: Aiogoogle) -> str:
-    """
-    Создание нового Google Spreadsheet и возвращение его идентификатора.
-    """
-    now_date_time = datetime.now().strftime(FORMAT)
-    service = await wrapper_service.discover(
-        api_name='sheets',
-        api_version='v4'
-    )
-    spreadsheet_body = {
+SPREADSHEET_BODY = {
         'properties': {
-            'title': f'Отчет от {now_date_time}',
+            'title': f'Отчет от ',
             'locale': 'ru_RU'
         },
         'sheets': [
@@ -34,10 +24,20 @@ async def spreadsheets_create(wrapper_service: Aiogoogle) -> str:
             }}
         ]
     }
-    spreadsheet_body['properties']['title'] += datetime.now().strftime(FORMAT)
+
+
+async def spreadsheets_create(wrapper_service: Aiogoogle) -> str:
+    """
+    Создание нового Google Spreadsheet и возвращение его идентификатора.
+    """
+    now_date_time = datetime.now().strftime(FORMAT)
+    service = await wrapper_service.discover(
+        api_name='sheets',
+        api_version='v4')
+    spreadsheet_body = SPREADSHEET_BODY
+    spreadsheet_body['properties']['title'] += now_date_time
     response = await wrapper_service.as_service_account(
-        service.spreadsheets.create(json=spreadsheet_body)
-    )
+        service.spreadsheets.create(json=spreadsheet_body))
     return response['spreadsheetId']
 
 
